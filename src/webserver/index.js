@@ -15,6 +15,8 @@ import createStore from '../shared/createStore'
 import {Provider} from 'react-redux'
 import {loadLocale} from '../shared/flux/locale/localeActions'
 
+import {Relay, RelayContext} from 'relay'
+
 const app = express()
 
 app.disable('x-powered-by')
@@ -58,15 +60,18 @@ app.get('*', (req, res) => {
 
     try {
       const store = createStore()
+      const relay = new Relay(process.env.GRAPHQL_URL)
 
       await store.dispatch(loadLocale(locale))
 
       const html = renderToString(
-        <Provider store={store}>
-          {() => (
-            <Router {...initialState} />
-          )}
-        </Provider>
+        <RelayContext relay={relay}>
+          <Provider store={store}>
+            {() => (
+              <Router {...initialState} />
+            )}
+          </Provider>
+        </RelayContext>
       )
 
       initialData.store = store.getState()

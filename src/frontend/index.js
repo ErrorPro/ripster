@@ -8,15 +8,20 @@ import routes from '../shared/routes'
 import createStore from '../shared/createStore'
 import {Provider} from 'react-redux'
 
+import {Relay, RelayContext} from 'relay'
+
 function initApp() {
   const store = createStore(window.state.store)
+  const relay = new Relay(process.env.GRAPHQL_URL || '/_graphql')
 
   render(
-    <Provider store={store}>
-      {() => (
-        <Router history={history} children={routes} />
-      )}
-    </Provider>,
+    <RelayContext relay={relay}>
+      <Provider store={store}>
+        {() => (
+          <Router history={history} children={routes} />
+        )}
+      </Provider>
+    </RelayContext>,
     document.getElementById('app')
   )
 }

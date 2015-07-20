@@ -15,6 +15,11 @@ export default class HomePage {
       <div className="HomePage">
         {children('localeButtons')}
         {children('form')}
+        {children('users')}
+        <div>
+          <button onClick={this.props.onUserCreate}>Create new user</button>
+          {this.props.errors.onUserCreate && <span>{this.props.errors.onUserCreate.message}</span>}
+        </div>
       </div>
     )
   }

@@ -39,5 +39,11 @@ Actual list of my favorites:
     build first-grade releases. Finest tool at current time but not simplest.
   * [Forever](https://github.com/foreverjs/forever) is used to restart backend
     server when code is changed by developer. Hot reload everywhere!
+* Internal technologies:
+  * Currently I'm developing lightweight clone of Relay that was introduced by
+    Facebook. The only reason why I'm doing this that I can't wait for public
+    release of Relay. All my API is based on a little pieces of currently
+    available information and I'm sure my clone will be replaced by original
+    in future.
 
 I believe that best Developer Experience leads us to best User Experience.
